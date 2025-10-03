@@ -234,7 +234,7 @@
                     </div>
                 </a>
 
-                <a href="https://example.com/gift2" target="_blank" class="gift-card fade-in" style="animation-delay: 0.1s; text-decoration:none;">
+                <a href="javascript:void(0)" onclick="downloadFile()" class="gift-card fade-in" style="animation-delay: 0.1s; text-decoration:none;">
                     <div class="relative overflow-hidden rounded-3xl shadow-xl">
                         <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
                              alt="Colorful gift boxes stacked together" 
@@ -248,19 +248,6 @@
                     </div>
                 </a>
 
-                <a href="https://example.com/gift3" target="_blank" class="gift-card fade-in" style="animation-delay: 0.2s; text-decoration:none;">
-                    <div class="relative overflow-hidden rounded-3xl shadow-xl">
-                        <img src="https://images.unsplash.com/photo-1606728035253-49e8a23146de?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
-                             alt="Elegant gift with golden bow" 
-                             class="w-full h-64 object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-purple-500/80 to-transparent"></div>
-                        <div class="absolute bottom-4 left-4 text-white">
-                            <h4 class="font-poppins font-semibold text-lg">Gift #3</h4>
-                            <p class="text-sm opacity-90">Click to open!</p>
-                        </div>
-                        <div class="gift-icon absolute top-4 right-4 text-white text-2xl" style="animation-delay: 1s;">🎀</div>
-                    </div>
-                </a>
             </div>
 
             <!-- Special Birthday Message -->
@@ -310,16 +297,7 @@
         </div>
     </div>
 
-    <div id="giftModal3" class="modal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal('giftModal3')">&times;</button>
-            <div class="text-6xl mb-4 bounce-slow">✨</div>
-            <h3 class="font-poppins font-bold text-2xl text-dark-purple mb-4">Dreams Come True!</h3>
-            <p class="text-gray-600 leading-relaxed">
-                May all your dreams and wishes come true this year. You deserve all the magic life has to offer!
-            </p>
-        </div>
-    </div>
+
 
     <script>
         function openGift(giftNumber) {
@@ -346,7 +324,34 @@
                 modals.forEach(modal => modal.classList.remove('show'));
             }
         });
+
+        function downloadFile() {
+            const text = `Dear Tisha,
+
+Wishing you the happiest of birthdays! 
+May your day be filled with joy, laughter, and wonderful surprises.
+May all your dreams come true!
+
+Ur bbg will be always here to support and love you. Through everything hehe. 
+
+And dont think too much just enjoy your day to the fullest.
+
+No matter the circumstances, you are amazing just the way you are and always loved by me.
+
+With love,
+ur bbg 💖`;
+
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', 'birthday_wishes.txt');
+
+            element.style.display = 'none';
+            document.body.appendChild(element);
+
+            element.click();
+
+            document.body.removeChild(element);
+        }
     </script>
 </body>
 </html>
-
