@@ -167,12 +167,12 @@
             </div>
 
             <!-- Photo Gallery Grid -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 auto-rows-auto">
                 <div class="photo-card fade-in">
-                    <div class="relative overflow-hidden rounded-3xl shadow-xl">
+                    <div class="relative overflow-hidden rounded-3xl shadow-xl aspect-auto">
                         <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
-                             alt="Happy birthday party with friends gathering" 
-                             class="w-full h-64 object-cover">
+                             class="w-full h-auto object-contain"
+                             onload="this.parentElement.style.height = this.height + 'px';">
                         <div class="photo-overlay absolute inset-0"></div>
                         <div class="photo-title absolute bottom-4 left-4 text-white">
                             <h4 class="font-poppins font-semibold">Birthday Celebrations</h4>
@@ -181,10 +181,10 @@
                 </div>
 
                 <div class="photo-card fade-in" style="animation-delay: 0.1s;">
-                    <div class="relative overflow-hidden rounded-3xl shadow-xl">
+                    <div class="relative overflow-hidden rounded-3xl shadow-xl aspect-auto">
                         <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
-                             alt="Birthday cake with colorful candles" 
-                             class="w-full h-64 object-cover">
+                             class="w-full h-auto object-contain"
+                             onload="this.parentElement.style.height = this.height + 'px';">
                         <div class="photo-overlay absolute inset-0"></div>
                         <div class="photo-title absolute bottom-4 left-4 text-white">
                             <h4 class="font-poppins font-semibold">Sweet Moments</h4>
@@ -193,16 +193,17 @@
                 </div>
 
                 <div class="photo-card fade-in" style="animation-delay: 0.2s;">
-                    <div class="relative overflow-hidden rounded-3xl shadow-xl">
+                    <div class="relative overflow-hidden rounded-3xl shadow-xl aspect-auto">
                         <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
-                             alt="Birthday party decorations with balloons" 
-                             class="w-full h-64 object-cover">
+                             class="w-full h-auto object-contain"
+                             onload="this.parentElement.style.height = this.height + 'px';">
                         <div class="photo-overlay absolute inset-0"></div>
                         <div class="photo-title absolute bottom-4 left-4 text-white">
                             <h4 class="font-poppins font-semibold">Party Vibes</h4>
                         </div>
                     </div>
                 </div>
+            </div>
 
             <!-- Memory Quote -->
             <div class="bg-rainbow-gradient rounded-3xl p-8 md:p-12 text-center text-white fade-in" style="animation-delay: 0.6s;">
@@ -213,5 +214,31 @@
             </div>
         </section>
     </div>
+
+    <!-- Add this script before the closing body tag -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const images = document.querySelectorAll('.photo-card img');
+        
+        images.forEach(img => {
+            img.addEventListener('load', function() {
+                const container = this.parentElement;
+                container.style.height = this.height + 'px';
+            });
+        });
+
+        // Handle window resize
+        let resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                images.forEach(img => {
+                    const container = img.parentElement;
+                    container.style.height = img.height + 'px';
+                });
+            }, 250);
+        });
+    });
+    </script>
 </body>
 </html>
